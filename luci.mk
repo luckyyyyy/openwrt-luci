@@ -118,16 +118,10 @@ PKG_SRC_VERSION?=$(if $(DUMP),x,$(strip $(call findrev,1)))
 PKG_GITBRANCH?=$(if $(DUMP),x,$(strip $(shell \
 	variant="LuCI"; \
 	if git log -1 >/dev/null 2>/dev/null; then \
-<<<<<<< HEAD
-		branch="22.03"; \
-		if [ "$$branch" != "master" ]; then \
-			variant="LuCI $$branch"; \
-=======
 		branch=$$(git branch --format='%(refname:strip=3)' --remote --no-abbrev --contains 2>/dev/null | tail -n1); \
 		branch=$${branch:-$$(git branch --format='%(refname:strip=2)' --no-abbrev --contains 2>/dev/null | tail -n1)}; \
 		if [ "$$branch" != "master" ]; then \
 			variant="LuCI $${branch:-unknown} branch"; \
->>>>>>> github/openwrt-22.03
 		else \
 			variant="LuCI Master"; \
 		fi; \
